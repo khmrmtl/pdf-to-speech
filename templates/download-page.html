@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Download</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-color: #F5F5DC;">
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12  jumbotron text-center" style="margin-top: 30px;background-color: white;">
+      <h1>PDF TO SPEECH</h1>
+      <p>Download your files</p>
+      <a href="{{ url_for('home') }}">Home</a>
+      <br><br>
+      {% for file in files:%}
+      <a href="{{ url_for('download_file', filename=file) }}">{{file}}</a><br>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+<br>
+{% include "footer.html"%}
+
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>

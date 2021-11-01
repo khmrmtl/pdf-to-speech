@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+  .loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    margin:auto;
+  }
+
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  </style>
+  <title>Hello World</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css">
+  {% if waiting: %}
+  <meta http-equiv="refresh" content="0;{{ url_for('convert_to_mp3', filename=filename) }}" />
+  {% endif %}
+</head>
+<body style="background-color: #F5F5DC; text-align: center;">
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12  jumbotron text-center" style="margin-top: 30px;background-color: white;">
+      <h1>PDF TO SPEECH</h1>
+      <p>Upload a pdf file and we'll convert it to an mp3 file</p>
+
+      <form action="{{ url_for('home') }}" method="POST" enctype="multipart/form-data">
+        {% if waiting: %}
+        <p style="color: gray;">{{ get_flashed_messages()[0] }}</p>
+        <div>
+          <input type="file" class="custom-file-input" style="margin: auto;" disabled>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success" disabled>Start</button>
+        <br><br>
+        <div class="loader"></div>
+        {% else: %}
+        <p style="color: red;">{{ get_flashed_messages()[0] }}</p>
+        <div>
+          <input type="file" class="custom-file-input" name="file" id="file"  style="margin: auto;">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success">Start</button>
+        {% endif %}
+      </form>
+
+      <br><br>
+
+    </div>
+  </div>
+</div>
+<br>
+{% include "footer.html"%}
+
+
+</body>
+
+</html>
