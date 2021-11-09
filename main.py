@@ -86,7 +86,8 @@ def convert_to_mp3(filename):
         print(pdf_reader.numPages)
         for index in range(pdf_reader.numPages):
             # creating a page object
-            page_obj = pdf_reader.getPage(0)
+            print(index)
+            page_obj = pdf_reader.getPage(index)
 
             # extracting text from page
             tts = gTTS(page_obj.extractText())
